@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Employee Registration Form{% endblock %}
+
+{% block body %}
+<div class="container justify-content-center">
+    <div class="col-md-12">
+        <div class="card mt-5">
+            <div class="card-body">
+                <h5 class="card-title text-center">Employee Edit Form </h5>
+                {% for flashType, flashMessages in app.flashes %}
+                        {% for flashMessage in flashMessages %}
+                            <div class="alert alert-{{ flashType }}">{{ flashMessage }}</div>
+                        {% endfor %}
+                    {% endfor %}
+                <p class="card-text">
+                    {{ form_start(form) }}
+                    {{ form_row(form.Name) }}
+                    {{ form_row(form.Email) }}
+                    {{ form_row(form.DateOfBirth) }}
+                    {{ form_row(form.gender) }}
+                    {{ form_row(form.Address) }}
+                    {{ form_row(form.Mobile) }}
+                    {{ form_row(form.Education) }}
+                    {{ form_row(form.Department) }}
+                    {{ form_row(form.ManagerName) }}
+                    {{ form_row(form.Joining_date) }}
+
+                    {{ form_row(form.ProfilePic) }}
+                    {% if existingProfilePic %}
+                        <div class="mb-3">
+                            <label for="existingProfile" class="form-label">Existing Profile</label>
+                            <input type="text" id="existingProfile" class="form-control" value="{{ existingProfilePic }}" readonly>
+                        </div>
+                    {% endif %}
+
+                    {{ form_row(form.Resume) }}
+                    {% if existingResume %}
+                        <div class="mb-3">
+                            <label for="existingResume" class="form-label">Existing Resume</label>
+                            <input type="text" id="existingResume" class="form-control" value="{{ existingResume }}" readonly>
+                        </div>
+                    {% endif %}
+
+                    {{ form_row(form.submit) }}
+                    {{ form_end(form) }}
+               
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

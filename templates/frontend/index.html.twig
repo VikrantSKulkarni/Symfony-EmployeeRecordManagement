@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<div class="container justify-content-center">
+<h1 class="text-center pb-2 mt-4">All Employees </h1>
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Name </th>
+                <th scope="col">Email </th>
+                <th scope="col">Date Of Birth</th>
+                <th scope="col">Address </th>
+                <th scope="col">Mobile </th>
+                <th scope="col">Education </th>
+                <th scope="col">Department </th>
+                <th scope="col">Manager </th>
+                <th scope="col">Date Of Joining</th>
+                <th scope="col">Profile</th>
+                <th scope="col">Action </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for emp in employees %}
+                <tr>
+                <td>{{ emp.name }}</td>
+                <td>{{ emp.email }}</td>
+                <td>{{ emp.DateOfBirth|date('Y-m-d') }}</td>
+                <td>{{ emp.Address }}</td>
+                <td>{{ emp.mobile }}</td>
+                <td>{{ emp.education }}</td>
+                <td>{{ emp.department }}</td>
+                <td>{{ emp.managerName }}</td>
+                <td>{{ emp.Joiningdate|date('Y-m-d') }}</td>
+                <td><img style="width:50px;" src="uploads/{{ emp.profilepic }}" alt="image"></td>
+                <td style="display:flex;">
+                    <a class="btn btn-success" href="{{ path('edit',{'id':emp.id }) }}"><i class="fa-solid fa-pen"></i></a>&nbsp;
+                    <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{ path('delete',{'id':emp.id }) }}"><i class="fa-solid fa-trash"></i></a>
+                </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+</div>
+{% endblock %}
